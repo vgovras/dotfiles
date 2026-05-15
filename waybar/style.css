@@ -1,0 +1,175 @@
+/* Waybar — default-swaybar look (flat dark bottom bar) with subtle accents. */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 7 Free", "Symbols Nerd Font", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+/* Bar window — solid black background */
+window#waybar {
+    background: black;
+    color: #d0d0d0;
+}
+
+window#waybar.hidden {
+    opacity: 0;
+}
+
+tooltip {
+    background: #2a2a2a;
+    border: 1px solid #444;
+}
+tooltip label {
+    color: #d0d0d0;
+    padding: 4px 8px;
+}
+
+/* Workspaces — flat, default-swaybar style */
+#workspaces {
+    padding: 0;
+    margin: 0;
+}
+#workspaces button {
+    color: #888888;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    min-width: 22px;
+    border-radius: 0;
+    border-top: 2px solid transparent;
+}
+#workspaces button:hover {
+    background: #2a2a2a;
+    color: #ffffff;
+}
+#workspaces button.focused,
+#workspaces button.active {
+    color: #ffffff;
+    background: #285577;
+    border-top: 2px solid #4c7899;
+}
+#workspaces button.urgent {
+    color: #ffffff;
+    background: #900000;
+    border-top: 2px solid #cc0000;
+}
+
+/* Mode indicator (e.g. "resize") */
+#mode {
+    background: #900000;
+    color: #ffffff;
+    padding: 0 10px;
+    border-top: 2px solid #cc0000;
+}
+
+/* Right-side modules — flat, padded, with subtle dividers */
+#tray,
+#idle_inhibitor,
+#backlight,
+#pulseaudio,
+#battery,
+#power-profiles-daemon,
+#temperature,
+#custom-language,
+#clock,
+#custom-power {
+    padding: 0 8px;
+    margin: 0;
+    background: transparent;
+    color: #d0d0d0;
+    border-left: 1px solid #2e2e2e;
+}
+
+/* Extra breathing room around the language indicator */
+#power-profiles-daemon {
+    padding-right: 12px;
+}
+#custom-language {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+/* First right-side module: no left border */
+#tray {
+    border-left: none;
+}
+
+/* Accent colors per module — subtle, default-swaybar palette */
+#clock {
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0 12px;
+}
+
+#custom-language {
+    color: #c8a2ff;
+    font-weight: 600;
+}
+
+#idle_inhibitor.activated {
+    color: #f5d76e;
+}
+#idle_inhibitor.deactivated {
+    color: #888888;
+}
+
+#backlight {
+    color: #f5d76e;
+}
+
+#pulseaudio {
+    color: #7fd1c5;
+}
+#pulseaudio.muted {
+    color: #6a6a6a;
+}
+
+#battery {
+    color: #9ad17a;
+}
+#battery.charging,
+#battery.plugged {
+    color: #7fd1c5;
+}
+#battery.warning:not(.charging) {
+    color: #f5d76e;
+}
+#battery.critical:not(.charging) {
+    color: #ff6b6b;
+    animation: blink 1s steps(2) infinite alternate;
+}
+@keyframes blink {
+    to { color: #ffffff; }
+}
+
+#power-profiles-daemon.performance { color: #ff6b6b; }
+#power-profiles-daemon.balanced    { color: #7aa6ff; }
+#power-profiles-daemon.power-saver { color: #9ad17a; }
+
+#temperature {
+    color: #d0d0d0;
+}
+#temperature.critical {
+    color: #ff6b6b;
+}
+
+#tray {
+    padding: 0 6px;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#custom-power {
+    color: #ff6b6b;
+    padding: 0 12px;
+}
+#custom-power:hover {
+    background: #3a1a1a;
+}

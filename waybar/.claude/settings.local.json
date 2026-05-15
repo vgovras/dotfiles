@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//sys/class/power_supply/**)",
+      "Read(//sys/class/backlight/**)",
+      "Read(//usr/lib/**)",
+      "Bash(/home/viacheslav/.config/waybar/restart.sh)",
+      "Bash(pgrep -af \"^.*waybar$\")",
+      "Bash(bash /home/viacheslav/.config/waybar/restart.sh)",
+      "Read(//tmp/**)",
+      "Bash(brightnessctl --list)",
+      "Bash(ls -la /sys/class/backlight/amdgpu_bl1/ 2>&1 | head -10 && echo \"---\" && which light ddcutil 2>&1 && echo \"---\" && groups)"
+    ]
+  }
+}

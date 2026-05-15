@@ -1,0 +1,135 @@
+// -*- mode: jsonc -*-
+// Waybar for Sway — mimics the default swaybar look (flat dark bottom bar),
+// with richer icons/colors on the right since waybar allows it.
+// Icons written as \uXXXX to avoid editors/linters stripping PUA glyphs.
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 22,
+  "spacing": 0,
+  "reload_style_on_change": true,
+
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": [],
+  "modules-right": [
+    "tray",
+    "backlight",
+    "pulseaudio",
+    "battery",
+    "power-profiles-daemon",
+    "temperature",
+    "custom/language",
+    "clock",
+    "custom/power",
+  ],
+
+  "sway/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "format": "{name}",
+  },
+
+  "sway/mode": {
+    "format": " {}",
+  },
+
+  "custom/language": {
+    "exec": "swaymsg -t get_inputs | grep -m1 '\"xkb_active_layout_name\"' | sed 's/.*\": \"\\(..\\).*/\\1/' | tr '[:lower:]' '[:upper:]'",
+    "interval": 1,
+    "format": " {}",
+    "tooltip": false,
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+  },
+
+  "clock": {
+    "format": " {:%I:%M %p}",
+    "format-alt": " {:%a %d.%m  %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "today": "<span color='#ffffff'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+
+  "backlight": {
+    "device": "amdgpu_bl1",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", ""],
+    "tooltip-format": "Brightness: {percent}%",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+  },
+
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "format-bluetooth": " {icon} {volume}%",
+    "format-bluetooth-muted": " ",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "tooltip-format": "{desc}: {volume}%",
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+  },
+
+  "battery": {
+    "interval": 30,
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": " {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{timeTo} • {power}W",
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
+  },
+
+  "temperature": {
+    "thermal-zone": 0,
+    "critical-threshold": 85,
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "tooltip-format": "CPU temperature: {temperatureC}°C",
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 6,
+  },
+
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/power-menu.sh",
+  },
+}
