@@ -100,7 +100,20 @@ tooltip label {
     border-left: none;
 }
 
-/* Accent colors per module — subtle, default-swaybar palette */
+/* Hover — subtle highlight on interactive modules */
+#backlight:hover,
+#pulseaudio:hover,
+#battery:hover,
+#power-profiles-daemon:hover,
+#temperature:hover,
+#custom-language:hover,
+#clock:hover {
+    background: #2a2a2a;
+    color: #ffffff;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+/* Monochrome palette — only alert states get color */
 #clock {
     color: #ffffff;
     font-weight: 600;
@@ -108,35 +121,22 @@ tooltip label {
 }
 
 #custom-language {
-    color: #c8a2ff;
+    color: #d0d0d0;
     font-weight: 600;
 }
 
-#idle_inhibitor.activated {
-    color: #f5d76e;
-}
-#idle_inhibitor.deactivated {
-    color: #888888;
-}
-
-#backlight {
-    color: #f5d76e;
+#backlight,
+#pulseaudio,
+#battery,
+#power-profiles-daemon,
+#temperature {
+    color: #d0d0d0;
 }
 
-#pulseaudio {
-    color: #7fd1c5;
-}
 #pulseaudio.muted {
     color: #6a6a6a;
 }
 
-#battery {
-    color: #9ad17a;
-}
-#battery.charging,
-#battery.plugged {
-    color: #7fd1c5;
-}
 #battery.warning:not(.charging) {
     color: #f5d76e;
 }
@@ -148,13 +148,6 @@ tooltip label {
     to { color: #ffffff; }
 }
 
-#power-profiles-daemon.performance { color: #ff6b6b; }
-#power-profiles-daemon.balanced    { color: #7aa6ff; }
-#power-profiles-daemon.power-saver { color: #9ad17a; }
-
-#temperature {
-    color: #d0d0d0;
-}
 #temperature.critical {
     color: #ff6b6b;
 }
@@ -167,9 +160,10 @@ tooltip label {
 }
 
 #custom-power {
-    color: #ff6b6b;
+    color: #d0d0d0;
     padding: 0 12px;
 }
 #custom-power:hover {
+    color: #ff6b6b;
     background: #3a1a1a;
 }
