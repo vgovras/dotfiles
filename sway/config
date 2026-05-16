@@ -8,11 +8,11 @@ set $down  j
 set $up    k
 set $right l
 set $term  kitty
-set $menu  rofi -show drun -show-icons -theme ~/.config/rofi/themes/squared-nord.rasi
+set $menu  rofi -show drun
 
 ### Output
 
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output eDP-1 scale 1.75
 # output HDMI-A-1 resolution 1920x1080 position 0,0
 
@@ -32,6 +32,9 @@ input type:touchpad {
 
 ### Autostart
 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec mako
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY
 exec nm-applet --indicator
 exec blueman-applet
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -172,9 +175,15 @@ bindsym --locked XF86MonBrightnessUp   exec brightnessctl set 5%+
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy --type image/png
 bindsym Print        exec grim - | wl-copy --type image/png
 
+### Screen recording — requires: sudo pacman -S wf-recorder slurp
+
+bindsym $mod+F9        exec wf-recorder -f ~/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4
+bindsym $mod+Shift+F9  exec wf-recorder -g "$(slurp)" -f ~/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4
+bindsym $mod+Ctrl+F9   exec pkill -INT wf-recorder
+
 ### Bar — waybar replaces the built-in swaybar
 
-exec_always pkill -x waybar; waybar &
+exec_always sh -c 'pkill -x waybar; true; waybar'
 
 # Built-in swaybar kept as a fallback (commented out).
 # bar {
