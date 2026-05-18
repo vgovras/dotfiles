@@ -73,6 +73,8 @@ tooltip label {
 #idle_inhibitor,
 #backlight,
 #pulseaudio,
+#cpu,
+#memory,
 #battery,
 #power-profiles-daemon,
 #temperature,
@@ -103,6 +105,8 @@ tooltip label {
 /* Hover — subtle highlight on interactive modules */
 #backlight:hover,
 #pulseaudio:hover,
+#cpu:hover,
+#memory:hover,
 #battery:hover,
 #power-profiles-daemon:hover,
 #temperature:hover,
@@ -127,10 +131,21 @@ tooltip label {
 
 #backlight,
 #pulseaudio,
+#cpu,
+#memory,
 #battery,
 #power-profiles-daemon,
 #temperature {
     color: #d0d0d0;
+}
+
+#cpu.warning,
+#memory.warning {
+    color: #f5d76e;
+}
+#cpu.critical,
+#memory.critical {
+    color: #ff6b6b;
 }
 
 #pulseaudio.muted {

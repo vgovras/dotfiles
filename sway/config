@@ -1,5 +1,9 @@
 # Sway configuration — read `man 5 sway` for reference.
 
+### Window decorations
+
+default_border pixel 1
+
 ### Variables
 
 set $mod   Mod4
@@ -66,7 +70,7 @@ floating_modifier $mod normal
 # Windows-like extras
 bindsym $mod+Shift+l     exec swaylock -f -c 1e1e2e --indicator-idle-visible --indicator-radius 100 --show-failed-attempts
 bindsym $mod+Ctrl+e      exec dolphin
-bindsym $mod+Tab         workspace back_and_forth
+bindsym Alt+Tab          workspace back_and_forth
 
 ### Focus (hjkl + arrows)
 

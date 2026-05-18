@@ -15,6 +15,8 @@
     "tray",
     "backlight",
     "pulseaudio",
+    "cpu",
+    "memory",
     "temperature",
     "power-profiles-daemon",
     "battery",
@@ -120,6 +122,26 @@
     "format": " {temperatureC}°C",
     "format-critical": " {temperatureC}°C",
     "tooltip-format": "CPU temperature: {temperatureC}°C",
+  },
+
+  "cpu": {
+    "interval": 2,
+    "states": {
+      "warning": 75,
+      "critical": 90,
+    },
+    "format": " {usage}%",
+    "tooltip-format": "CPU load: {usage}% • {load} avg",
+  },
+
+  "memory": {
+    "interval": 5,
+    "states": {
+      "warning": 75,
+      "critical": 90,
+    },
+    "format": "󰘚 {percentage}%/{swapPercentage}%",
+    "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G ({swapPercentage}%)",
   },
 
   "tray": {
